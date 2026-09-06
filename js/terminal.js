@@ -163,9 +163,9 @@ Available commands:
     this.print(`
 <span style="color:#38bdf8;font-weight:700;">Sidharth Sreekumar — Software Engineer</span>
 Kerala, India | +91 9645332233 | sidharthsmsd@gmail.com
-• Results-driven Software Engineer experienced in building scalable backend microservices, RESTful APIs, and distributed systems using Java, Spring Boot, and AWS.
-• Proven track record in CI/CD automation, performance profiling, and enterprise integrations.
-• Additionally brings cross-functional leadership experience in hospital operations, focusing on patient care quality improvements and workflow optimization.
+• Software Engineer with 2 years of experience developing and maintaining high-performance, Java-based microservices in production.
+• Currently design and scale cloud-native infrastructure on AWS using Spring Boot and PostgreSQL, with hands-on expertise in gRPC/REST communication, OAuth 2.0/JWT security, and JVM performance profiling.
+• Leveraging tools like GitHub Actions, ArgoCD, Grafana, and Kibana, focusing on CI/CD automation, rigorous load testing, and end-to-end system observability.
 `, false);
   }
 
