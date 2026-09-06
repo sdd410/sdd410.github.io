@@ -1,0 +1,19 @@
+{
+  "name": "sidharth-sreekumar-portfolio",
+  "version": "1.0.0",
+  "description": "Fluidic static interactive personal website for Sidharth Sreekumar (Software Engineer - Backend & Distributed Systems)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "software-engineer",
+    "distributed-systems",
+    "spring-boot",
+    "grpc",
+    "fluidic"
+  ],
+  "author": "Sidharth Sreekumar",
+  "license": "MIT"
+}

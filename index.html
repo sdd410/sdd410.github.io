@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="midnight">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidharth Sreekumar | Software Engineer - Backend & Distributed Systems</title>
+  
+  <!-- SEO & Open Graph Meta -->
+  <meta name="description" content="Portfolio of Sidharth Sreekumar, Software Engineer specializing in scalable backend microservices, Spring Boot, gRPC, AWS, and distributed systems.">
+  <meta name="keywords" content="Sidharth Sreekumar, Software Engineer, Backend Engineer, Java, Spring Boot, gRPC, AWS, Riyadh Air, JFR, Kerala">
+  <meta name="author" content="Sidharth Sreekumar">
+  
+  <!-- Fonts: Space Grotesk, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Fluid Background Canvas & Ambient Orbs -->
+  <canvas id="fluid-canvas"></canvas>
+  <div class="ambient-noise"></div>
+  <div class="ambient-glow-orb orb-1"></div>
+  <div class="ambient-glow-orb orb-2"></div>
+
+  <!-- FLOATING NAVBAR -->
+  <div class="navbar-wrapper">
+    <nav class="navbar">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-dot"></span>
+        <span>sidharth<span style="color:var(--accent-cyan)">.dev</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#architecture" class="nav-link">Architecture</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <button id="theme-toggle-btn" class="icon-btn" title="Toggle Theme (Midnight / Emerald / Amber / Light)" aria-label="Toggle Theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+
+        <button id="sound-toggle-btn" class="icon-btn" title="Toggle Synthesized Audio Feedback (or press 'M')" aria-label="Toggle Audio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
+        </button>
+
+        <a href="Sidharth_Sreekumar_SWE.pdf" download="Sidharth_Sreekumar_SWE.pdf" class="btn btn-primary" style="padding: 0.45rem 1rem; font-size: 0.825rem;" title="Download Official Resume PDF">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span>Resume PDF</span>
+        </a>
+        <button id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-label="Toggle Navigation Menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-drawer" class="mobile-drawer">
+      <a href="#hero" class="mobile-nav-link">Home <span>→</span></a>
+      <a href="#architecture" class="mobile-nav-link">Architecture Simulator <span>→</span></a>
+      <a href="#experience" class="mobile-nav-link">Experience <span>→</span></a>
+      <a href="#projects" class="mobile-nav-link">Projects <span>→</span></a>
+      <a href="#skills" class="mobile-nav-link">Skills <span>→</span></a>
+      <a href="#education" class="mobile-nav-link">Education <span>→</span></a>
+      <a href="#contact" class="mobile-nav-link">Contact <span>→</span></a>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-indicator"></span>
+            <span>AVAILABLE FOR SWE & BACKEND OPPORTUNITIES</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Sidharth Sreekumar</span>
+          </h1>
+
+          <div class="hero-subtitle">
+            <span>Specialized in</span>
+            <span id="hero-typed-text"></span><span class="typing-cursor"></span>
+          </div>
+
+          <p class="hero-bio">
+            Results-driven Software Engineer experienced in building scalable backend microservices, RESTful APIs, and distributed systems using <strong>Java, Spring Boot, and AWS</strong>. Proven track record in CI/CD automation, performance profiling, and enterprise integrations like Riyadh Air. Additionally brings cross-functional leadership in hospital operations optimizing patient workflows.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#architecture" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <span>Explore Architecture Sim</span>
+            </a>
+
+            <a href="Sidharth_Sreekumar_SWE.pdf" download="Sidharth_Sreekumar_SWE.pdf" class="btn btn-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+              </svg>
+              <span>Download Resume</span>
+            </a>
+
+            <button onclick="window.interactiveTerminalInstance && window.interactiveTerminalInstance.toggle(true)" class="btn btn-terminal" title="Launch Interactive Terminal (Hotkey: T)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+              </svg>
+              <span>Terminal CLI [T]</span>
+            </button>
+          </div>
+
+          <div class="hero-stats-row">
+            <div class="stat-item">
+              <span class="stat-value">+30%</span>
+              <span class="stat-label">Scaffolding Velocity</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">&lt; 15ms</span>
+              <span class="stat-label">p99 gRPC Latency</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">99.99%</span>
+              <span class="stat-label">Enterprise SLA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right: Live Telemetry Glass Card -->
+        <div class="hero-visual-card">
+          <div class="card-glare"></div>
+          <div class="telemetry-header">
+            <div class="telemetry-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+              </svg>
+              <span>LIVE SYSTEM TELEMETRY</span>
+            </div>
+            <span class="live-badge">ALL SYSTEMS NORMAL</span>
+          </div>
+
+          <div class="telemetry-body">
+            <div class="telemetry-node">
+              <div class="node-row">
+                <span class="node-name">
+                  <span style="color:var(--accent-cyan)">●</span> Riyadh Air Partner Gateway
+                </span>
+                <span class="node-metric">OAuth 2.0 / JWT [Active]</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 96%"></div>
+              </div>
+            </div>
+
+            <div class="telemetry-node">
+              <div class="node-row">
+                <span class="node-name">
+                  <span style="color:var(--accent-indigo)">●</span> Java 18+ JVM Memory (ZGC)
+                </span>
+                <span class="node-metric">0.38ms GC Pause</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 29%"></div>
+              </div>
+            </div>
+
+            <div class="telemetry-node">
+              <div class="node-row">
+                <span class="node-name">
+                  <span style="color:var(--accent-emerald)">●</span> Redis Sub-ms Cluster
+                </span>
+                <span class="node-metric">94.6% Cache Hit Rate</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 94%"></div>
+              </div>
+            </div>
+
+            <div class="telemetry-node">
+              <div class="node-row">
+                <span class="node-name">
+                  <span style="color:var(--accent-amber)">●</span> ArgoCD & GitHub Actions CI/CD
+                </span>
+                <span class="node-metric">Automated Green Pipeline</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 100%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quick-connect-chips">
+            <a href="https://linkedin.com/in/sdd410" target="_blank" rel="noopener" class="chip-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span>linkedin/sdd410</span>
+            </a>
+
+            <a href="https://github.com/sdd410" target="_blank" rel="noopener" class="chip-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              <span>github/sdd410</span>
+            </a>
+
+            <button onclick="copyToClipboard('sidharthsmsd@gmail.com', 'Email')" class="chip-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <span>Copy Email</span>
+            </button>
+
+            <button onclick="copyToClipboard('+919645332233', 'Phone Number')" class="chip-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <span>+91 9645332233</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE SYSTEM OBSERVABILITY HUB (Riyadh Air / Spring Boot / gRPC / JFR) -->
+  <section id="architecture" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Interactive Architecture Playground</span>
+        <h2 class="section-title">High-Scale Backend & Microservices Hub</h2>
+        <p class="section-desc">
+          An interactive simulation inspired by the Riyadh Air partner integration at Verteil Technologies. Test live routing across AWS, Spring Boot 3.x, Redis, gRPC, and Java Flight Recorder.
+        </p>
+      </div>
+
+      <div id="system-simulator" class="simulator-card">
+        <div class="simulator-toolbar">
+          <div class="toolbar-controls">
+            <button id="sim-send-req" class="sim-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <span>Dispatch Flight Query</span>
+            </button>
+
+            <button id="sim-spike-btn" class="sim-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+              <span>Simulate Load Spike</span>
+            </button>
+
+            <button id="sim-jfr-btn" class="sim-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+              </svg>
+              <span>Run JFR Dump</span>
+            </button>
+          </div>
+
+          <div style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-secondary);">
+            Cluster: <span style="color:var(--accent-emerald);">AWS us-east-1 (Kubernetes)</span>
+          </div>
+        </div>
+
+        <div class="simulator-grid">
+          <!-- Topology Diagram -->
+          <div class="sim-topology">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-family:var(--font-mono);font-size:0.78rem;color:var(--text-muted);text-transform:uppercase;">
+                CLICK ANY NODE TO INSPECT ARCHITECTURE
+              </span>
+              <span class="live-badge" style="font-size:0.68rem;">INTER-SERVICE MESH</span>
+            </div>
+
+            <div class="topology-nodes">
+              <!-- Node 1: API Gateway -->
+              <div class="arch-node" data-node="gateway">
+                <div class="arch-node-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </div>
+                <div class="arch-node-title">AWS API Gateway</div>
+                <div class="arch-node-subtitle">OAuth 2.0 & JWT</div>
+              </div>
+
+              <!-- Node 2: Spring Boot Microservice -->
+              <div class="arch-node active" data-node="spring">
+                <div class="arch-node-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                  </svg>
+                </div>
+                <div class="arch-node-title">Spring Boot 3.x</div>
+                <div class="arch-node-subtitle">Java 18+ (Riyadh Air)</div>
+              </div>
+
+              <!-- Node 3: Redis Cache -->
+              <div class="arch-node" data-node="redis">
+                <div class="arch-node-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                    <polyline points="2 17 12 22 22 17"/>
+                    <polyline points="2 12 12 17 22 12"/>
+                  </svg>
+                </div>
+                <div class="arch-node-title">Redis Cluster</div>
+                <div class="arch-node-subtitle">Sub-1ms Fare Cache</div>
+              </div>
+
+              <!-- Node 4: gRPC Mesh -->
+              <div class="arch-node" data-node="grpc">
+                <div class="arch-node-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                  </svg>
+                </div>
+                <div class="arch-node-title">gRPC Inter-Service</div>
+                <div class="arch-node-subtitle">HTTP/2 Protobuf</div>
+              </div>
+
+              <!-- Node 5: PostgreSQL Database -->
+              <div class="arch-node" data-node="postgres">
+                <div class="arch-node-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                  </svg>
+                </div>
+                <div class="arch-node-title">PostgreSQL DB</div>
+                <div class="arch-node-subtitle">Transactional Store</div>
+              </div>
+            </div>
+
+            <!-- Bottom Stats Metrics inside Topology -->
+            <div class="sim-metrics-bar">
+              <div class="sim-metric-cell">
+                <div id="metric-rps" class="sim-cell-val">180 /s</div>
+                <div class="sim-cell-lbl">Throughput</div>
+              </div>
+              <div class="sim-metric-cell">
+                <div id="metric-latency" class="sim-cell-val">14.2ms</div>
+                <div class="sim-cell-lbl">p99 Latency</div>
+              </div>
+              <div class="sim-metric-cell">
+                <div id="metric-hitrate" class="sim-cell-val">94.6%</div>
+                <div class="sim-cell-lbl">Cache Hit</div>
+              </div>
+              <div class="sim-metric-cell">
+                <div id="metric-total-reqs" class="sim-cell-val">14,280</div>
+                <div class="sim-cell-lbl">Total Queries</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Telemetry Output Console -->
+          <div class="sim-telemetry-panel">
+            <div class="telemetry-tabs">
+              <button class="tab-btn active" data-tab="stream">Live Stream</button>
+              <button class="tab-btn" data-tab="proto">gRPC Proto</button>
+              <button class="tab-btn" data-tab="jfr">JFR Profiler</button>
+            </div>
+
+            <div id="telemetry-log" class="telemetry-log-output">
+              <span class="log-level-info">[INITIALIZE]</span> Listening on gRPC channel 0.0.0.0:50051...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE TIMELINE -->
+  <section id="experience" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Career History</span>
+        <h2 class="section-title">Work Experience & Impact</h2>
+        <p class="section-desc">
+          Building high-throughput microservices for global airline distributors, leading mission-critical integrations, and optimizing distributed systems.
+        </p>
+      </div>
+
+      <div class="timeline-wrapper">
+        <div class="timeline-spine"></div>
+
+        <!-- Experience 1: Verteil SWE -->
+        <div class="timeline-item">
+          <div class="timeline-node-marker">
+            <div class="node-marker-inner"></div>
+          </div>
+
+          <div class="experience-card">
+            <div class="exp-header">
+              <div>
+                <h3 class="exp-role">Software Engineer</h3>
+                <div class="exp-company">Verteil Technologies Pvt. Ltd</div>
+              </div>
+              <span class="exp-badge current">Oct 2023 – Present</span>
+            </div>
+            <div class="exp-location">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span>Kerala, India</span>
+            </div>
+
+            <ul class="exp-bullets">
+              <li class="exp-bullet-item">
+                Serve as <strong>co–code owner for the Riyadh Air integration</strong>, contributing to core backend development, architectural code reviews, and 24/7 production maintenance for airline distribution.
+              </li>
+              <li class="exp-bullet-item">
+                Designed and implemented <strong>RESTful APIs secured with OAuth 2.0 and JWT</strong> to standardize real-time airline data retrieval across multiple international partner airlines.
+              </li>
+              <li class="exp-bullet-item">
+                Built and deployed scalable microservices on <strong>AWS</strong> using <strong>Java 18+, Spring Boot, PostgreSQL, and Redis</strong>, utilizing GitHub Copilot and Claude Code to accelerate feature scaffolding and API integration by <strong>30%</strong>.
+              </li>
+              <li class="exp-bullet-item">
+                Designed and integrated <strong>gRPC-based inter-service communication</strong> to enable low-latency, strongly typed binary RPC between high-volume backend microservices.
+              </li>
+              <li class="exp-bullet-item">
+                Automated continuous delivery pipelines using <strong>GitHub Actions and ArgoCD</strong>, integrating comprehensive unit and acceptance test suites to minimize deployment failures.
+              </li>
+              <li class="exp-bullet-item">
+                Conducted rigorous <strong>load testing</strong> on backend services to validate throughput, stress tolerances, and sub-second latencies under peak holiday flight traffic conditions.
+              </li>
+              <li class="exp-bullet-item">
+                Performed in-depth <strong>JVM performance analysis using Java Flight Recorder (JFR)</strong> to diagnose memory leaks, optimize garbage collection (GC) pauses, and eliminate CPU bottlenecks.
+              </li>
+              <li class="exp-bullet-item">
+                Improved system observability by building customizable <strong>Kibana and Grafana dashboards</strong>, reducing Mean Time to Resolution (MTTR) for production incidents.
+              </li>
+            </ul>
+
+            <div class="exp-tech-stack">
+              <span class="skill-pill">Java 18+</span>
+              <span class="skill-pill">Spring Boot</span>
+              <span class="skill-pill">gRPC</span>
+              <span class="skill-pill">AWS</span>
+              <span class="skill-pill">PostgreSQL</span>
+              <span class="skill-pill">Redis</span>
+              <span class="skill-pill">OAuth 2.0 / JWT</span>
+              <span class="skill-pill">Docker</span>
+              <span class="skill-pill">ArgoCD</span>
+              <span class="skill-pill">GitHub Actions</span>
+              <span class="skill-pill">JFR Profiling</span>
+              <span class="skill-pill">Grafana & Kibana</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience 2: Verteil SWE Intern -->
+        <div class="timeline-item">
+          <div class="timeline-node-marker">
+            <div class="node-marker-inner"></div>
+          </div>
+
+          <div class="experience-card">
+            <div class="exp-header">
+              <div>
+                <h3 class="exp-role">Software Engineering Intern</h3>
+                <div class="exp-company">Verteil Technologies Pvt. Ltd</div>
+              </div>
+              <span class="exp-badge">Mar 2023 – Jul 2023</span>
+            </div>
+            <div class="exp-location">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span>Kerala, India</span>
+            </div>
+
+            <ul class="exp-bullets">
+              <li class="exp-bullet-item">
+                Built backend services using <strong>Java, Spring Boot, and REST APIs</strong> for complex airline NDC data processing workflows.
+              </li>
+              <li class="exp-bullet-item">
+                Worked closely with principal and senior engineers in fast-paced Agile sprints, establishing best practices in clean code architecture, defensive error handling, and unit test coverage.
+              </li>
+            </ul>
+
+            <div class="exp-tech-stack">
+              <span class="skill-pill">Java</span>
+              <span class="skill-pill">Spring Boot</span>
+              <span class="skill-pill">REST APIs</span>
+              <span class="skill-pill">PostgreSQL</span>
+              <span class="skill-pill">Git</span>
+              <span class="skill-pill">Agile</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience Callout: Hospital Operations Leadership -->
+        <div class="timeline-item">
+          <div class="timeline-node-marker" style="border-color:var(--accent-indigo);box-shadow:0 0 12px var(--accent-indigo);">
+            <div class="node-marker-inner" style="background:var(--accent-indigo);"></div>
+          </div>
+
+          <div class="leadership-callout">
+            <div class="callout-icon">🏥</div>
+            <div class="callout-text">
+              <h4>Cross-Functional Leadership in Hospital Operations</h4>
+              <p>
+                Brings distinctive cross-functional operational leadership experience in hospital operations, focusing on patient care quality improvements, logistics bottlenecks, and high-reliability workflow optimization. This high-stakes environment instilled deep rigor around zero-downtime reliability, stakeholder coordination, and defensive systems thinking.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECTS -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Engineering Showcase</span>
+        <h2 class="section-title">Featured Projects & Systems</h2>
+        <p class="section-desc">
+          From autonomous drone swarm flight paths and computer vision translation models to machine learning diagnostics and airline integrations.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1: Swarm Drones -->
+        <div class="project-card">
+          <div>
+            <div class="project-card-header">
+              <span class="project-category">Robotics & Autonomous Systems</span>
+              <span class="project-period">2022 – 2023</span>
+            </div>
+            <h3 class="project-title">Security & Surveillance using Swarm Drones</h3>
+            <p class="project-desc">
+              Designed and implemented decentralized flight-path coordination algorithms and real-time computer vision object detection in Python to manage autonomous drone swarms for surveillance perimeters.
+            </p>
+            <ul class="project-features">
+              <li>Autonomous formation flight-path algorithms with collision avoidance.</li>
+              <li>Real-time object detection models for boundary security monitoring.</li>
+              <li>Distributed peer node state sharing and mission waypoint re-routing.</li>
+            </ul>
+          </div>
+
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">Swarm Algorithms</span>
+              <span class="skill-pill">Object Detection</span>
+              <span class="skill-pill">OpenCV</span>
+            </div>
+            <button id="open-drone-sim-btn" class="project-interactive-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <span>Live 2D Swarm Sim</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 2: Sign Language Detection -->
+        <div class="project-card">
+          <div>
+            <div class="project-card-header">
+              <span class="project-category">Computer Vision & Deep Learning</span>
+              <span class="project-period">2022 – 2023</span>
+            </div>
+            <h3 class="project-title">Sign Language Gesture Detection</h3>
+            <p class="project-desc">
+              Constructed an end-to-end CNN-based computer vision model utilizing OpenCV and deep learning to translate dynamic hand gestures into text in real-time, bridging communication barriers.
+            </p>
+            <ul class="project-features">
+              <li>Convolutional Neural Network (CNN) architecture trained on gesture datasets.</li>
+              <li>Low-latency OpenCV video pipeline for hand contour segmentation & feature extraction.</li>
+              <li>Real-time frame inferencing with high gesture classification accuracy.</li>
+            </ul>
+          </div>
+
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="skill-pill">CNN</span>
+              <span class="skill-pill">OpenCV</span>
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">Deep Learning</span>
+              <span class="skill-pill">Real-time CV</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Chronic Kidney Disease Prediction -->
+        <div class="project-card">
+          <div>
+            <div class="project-card-header">
+              <span class="project-category">Predictive Analytics & ML</span>
+              <span class="project-period">2021 – 2022</span>
+            </div>
+            <h3 class="project-title">Chronic Kidney Disease (CKD) Prediction</h3>
+            <p class="project-desc">
+              Applied machine learning algorithms to clinical biomarkers to predict kidney disease risk, incorporating comprehensive feature selection and hyperparameter tuning to elevate predictive diagnostic accuracy.
+            </p>
+            <ul class="project-features">
+              <li>Comparative analysis of Logistic Regression, Random Forest, and SVM models.</li>
+              <li>Data preprocessing, missing value imputation, and correlation-based feature selection.</li>
+              <li>Hyperparameter tuning with cross-validation to prevent overfitting.</li>
+            </ul>
+          </div>
+
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="skill-pill">Machine Learning</span>
+              <span class="skill-pill">Random Forest</span>
+              <span class="skill-pill">SVM</span>
+              <span class="skill-pill">Logistic Regression</span>
+              <span class="skill-pill">Python</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Riyadh Air NDC Enterprise Integration -->
+        <div class="project-card">
+          <div>
+            <div class="project-card-header">
+              <span class="project-category">Enterprise Distributed Systems</span>
+              <span class="project-period">2023 – Present</span>
+            </div>
+            <h3 class="project-title">Riyadh Air NDC Integration Platform</h3>
+            <p class="project-desc">
+              Production-grade airline distribution backend serving as co-code owner. Delivers sub-millisecond cache lookups, standardized flight booking APIs, and zero-downtime deployment pipelines.
+            </p>
+            <ul class="project-features">
+              <li>Standardized airline search retrieval for multiple international carriers.</li>
+              <li>Secure JWT token parsing and OAuth 2.0 gateway authorization.</li>
+              <li>High-volume Redis caching reducing downstream database query loads by over 80%.</li>
+            </ul>
+          </div>
+
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="skill-pill">Java 18+</span>
+              <span class="skill-pill">Spring Boot</span>
+              <span class="skill-pill">gRPC</span>
+              <span class="skill-pill">AWS</span>
+              <span class="skill-pill">PostgreSQL</span>
+              <span class="skill-pill">Redis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS MATRIX -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Technical Competencies</span>
+        <h2 class="section-title">Skills & Technologies</h2>
+        <p class="section-desc">
+          Core technologies, frameworks, profiling tools, and engineering principles utilized across production microservices.
+        </p>
+      </div>
+
+      <!-- Skills Category Filter Bar -->
+      <div class="skills-filter-bar">
+        <button class="filter-btn active" data-category="all">All Disciplines</button>
+        <button class="filter-btn" data-category="backend">Backend & Data</button>
+        <button class="filter-btn" data-category="languages">Languages</button>
+        <button class="filter-btn" data-category="cloud">Cloud & DevOps</button>
+        <button class="filter-btn" data-category="ai">AI Dev Tools</button>
+        <button class="filter-btn" data-category="perf">Performance & Systems</button>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Skill 1: Java & Spring Boot -->
+        <div class="skill-card" data-category="backend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge">☕</div>
+            <span class="skill-category-tag">Backend</span>
+          </div>
+          <h3 class="skill-name">Java & Spring Boot</h3>
+          <p class="skill-desc">
+            Production microservice engineering with modern Java 18+, Spring Boot 3.x, Virtual Threads, JPA, and dependency injection.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-pill">Java 18+</span>
+            <span class="skill-pill">Spring Boot</span>
+            <span class="skill-pill">Spring Data</span>
+            <span class="skill-pill">Microservices</span>
+          </div>
+        </div>
+
+        <!-- Skill 2: gRPC & Inter-Service RPC -->
+        <div class="skill-card" data-category="backend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge">⚡</div>
+            <span class="skill-category-tag">Backend</span>
+          </div>
+          <h3 class="skill-name">gRPC & API Protocols</h3>
+          <p class="skill-desc">
+            Ultra-fast binary Protobuf messaging over HTTP/2, contract-first schema design, bidirectional streaming, and RESTful APIs.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-pill">gRPC</span>
+            <span class="skill-pill">Protocol Buffers</span>
+            <span class="skill-pill">REST APIs</span>
+            <span class="skill-pill">OAuth 2.0 / JWT</span>
+          </div>
+        </div>
+
+        <!-- Skill 3: Databases & Caching -->
+        <div class="skill-card" data-category="backend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge">💾</div>
+            <span class="skill-category-tag">Backend</span>
+          </div>
+          <h3 class="skill-name">Databases & Caching</h3>
+          <p class="skill-desc">
+            Relational storage optimization, graph analysis, and distributed in-memory caching for sub-millisecond query responses.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-pill">Redis</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">MySQL</span>
+            <span class="skill-pill">Neo4j</span>
+            <span class="skill-pill">SQL</span>
+          </div>
+        </div>
+
+        <!-- Skill 4: Cloud & DevOps -->
+        <div class="skill-card" data-category="cloud">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge">☁️</div>
+            <span class="skill-category-tag">Cloud & DevOps</span>
+          </div>
+          <h3 class="skill-name">AWS & CI/CD Pipelines</h3>
+          <p class="skill-desc">
+            Cloud microservice deployment on AWS, Docker containerization, GitOps automation with ArgoCD, and automated GitHub Actions.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-pill">AWS</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">GitHub Actions</span>
+            <span class="skill-pill">ArgoCD</span>
+            <span class="skill-pill">Git</span>
+          </div>
+        </div>
+
+        <!-- Skill 5: AI Dev Tooling -->
+        <div class="skill-card" data-category="ai">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge">🤖</div>
+            <span class="skill-category-tag">AI Dev Tools</span>
+          </div>
+          <h3 class="skill-name">AI-Assisted Engineering</h3>
+          <p class="skill-desc">
+            Leveraging agentic AI tools and LLM APIs to accelerate development velocity by 30%, automate testing, and scaffold boilerplate.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-pill">GitHub Copilot</span>
+            <span class="skill-pill">Claude Code</span>
+            <span class="skill-pill">LangChain</span>
+            <span class="skill-pill">GPT-4o API</span>
+          </div>
+        </div>
+
+        <!-- Skill 6: Performance Engineering & JFR -->
+        <div class="skill-card" data-category="perf">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge">📊</div>
+            <span class="skill-category-tag">Performance</span>
+          </div>
+          <h3 class="skill-name">Performance & Observability</h3>
+          <p class="skill-desc">
+            Profiling memory, garbage collection, and thread contention with Java Flight Recorder (JFR), Grafana dashboards, and Kibana.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-pill">JFR Analysis</span>
+            <span class="skill-pill">JVM Profiling</span>
+            <span class="skill-pill">Load Testing</span>
+            <span class="skill-pill">Grafana</span>
+            <span class="skill-pill">Kibana</span>
+          </div>
+        </div>
+
+        <!-- Skill 7: Programming Languages -->
+        <div class="skill-card" data-category="languages">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge">💻</div>
+            <span class="skill-category-tag">Languages</span>
+          </div>
+          <h3 class="skill-name">Core Languages</h3>
+          <p class="skill-desc">
+            Versatile polyglot fluency across systems programming, scripting, algorithms, and full-stack web integration.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-pill">Java</span>
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">C++</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">SQL</span>
+          </div>
+        </div>
+
+        <!-- Skill 8: Concepts & Architecture -->
+        <div class="skill-card" data-category="perf">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge">🏛️</div>
+            <span class="skill-category-tag">System Design</span>
+          </div>
+          <h3 class="skill-name">Architecture & CS Concepts</h3>
+          <p class="skill-desc">
+            Foundational computer science principles applied to build fault-tolerant, horizontally scalable, and highly available architectures.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-pill">DSA</span>
+            <span class="skill-pill">OOP</span>
+            <span class="skill-pill">Scalability</span>
+            <span class="skill-pill">High Availability</span>
+            <span class="skill-pill">System Design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION & CERTIFICATIONS -->
+  <section id="education" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Academic Background</span>
+        <h2 class="section-title">Education & Certifications</h2>
+      </div>
+
+      <div class="edu-cert-grid">
+        <!-- Education Card -->
+        <div class="edu-card">
+          <div class="edu-header">
+            <div class="edu-icon">🎓</div>
+            <div>
+              <h3 class="edu-degree">B.Tech in Computer Science and Engineering</h3>
+              <div class="edu-school">Amrita School of Engineering</div>
+              <div class="edu-year">Graduated: May 2023</div>
+            </div>
+          </div>
+          <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">
+            Comprehensive foundation in algorithms, operating systems, database management systems, computer networks, and distributed computing architectures.
+          </p>
+        </div>
+
+        <!-- Certifications Card -->
+        <div class="cert-card">
+          <div class="cert-header">
+            <div class="cert-icon">📜</div>
+            <div>
+              <h3 class="edu-degree">Industry Certifications</h3>
+              <div class="edu-school">Verified Technical Credentials</div>
+            </div>
+          </div>
+
+          <div class="certs-list">
+            <div class="cert-item">
+              <span class="cert-name">SQL (Intermediate)</span>
+              <span class="cert-issuer">HackerRank</span>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">Python (Basic) & SQL (Basic)</span>
+              <span class="cert-issuer">HackerRank</span>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">C Programming</span>
+              <span class="cert-issuer">Coursera</span>
+            </div>
+            <div class="cert-item">
+              <span class="cert-name">HTML & CSS</span>
+              <span class="cert-issuer">Coursera</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & CONNECT SECTION -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="contact-wrapper">
+        <span class="section-tag">Let's Connect</span>
+        <h2 class="contact-headline">Interested in Collaborating?</h2>
+        <p class="contact-subtext">
+          Whether you have an exciting backend engineering role, a distributed systems challenge, or want to discuss high-scale microservices, my inbox is always open.
+        </p>
+
+        <div class="contact-channels">
+          <a href="mailto:sidharthsmsd@gmail.com" class="contact-channel-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span>sidharthsmsd@gmail.com</span>
+            <button onclick="event.preventDefault(); copyToClipboard('sidharthsmsd@gmail.com', 'Email');" class="copy-btn" title="Copy Email">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </button>
+          </a>
+
+          <a href="tel:+919645332233" class="contact-channel-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>+91 9645332233</span>
+            <button onclick="event.preventDefault(); copyToClipboard('+919645332233', 'Phone');" class="copy-btn" title="Copy Phone">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </button>
+          </a>
+
+          <a href="https://linkedin.com/in/sdd410" target="_blank" rel="noopener" class="contact-channel-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <span>linkedin.com/in/sdd410</span>
+          </a>
+
+          <a href="https://github.com/sdd410" target="_blank" rel="noopener" class="contact-channel-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span>github.com/sdd410</span>
+          </a>
+        </div>
+
+        <div>
+          <a href="Sidharth_Sreekumar_SWE.pdf" download="Sidharth_Sreekumar_SWE.pdf" class="btn btn-primary" style="padding: 0.9rem 2rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span>Download Official Resume (PDF)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          © 2026 Sidharth Sreekumar. Engineered with fluidic physics, zero external dependencies, and client-side performance.
+        </div>
+        <div class="footer-meta">
+          <span>Kerala, India</span>
+          <span>•</span>
+          <a href="Sidharth_Sreekumar_SWE.pdf" download style="color:var(--accent-cyan)">PDF Resume</a>
+          <span>•</span>
+          <button onclick="window.interactiveTerminalInstance && window.interactiveTerminalInstance.toggle(true)" style="color:var(--text-secondary);font-family:inherit;">Terminal [T]</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- HUD TERMINAL TRIGGER & MODAL -->
+  <div class="terminal-hud">
+    <button id="terminal-hud-launcher" class="terminal-launcher-btn" title="Open Interactive HUD Terminal (Shortcut: T)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+      </svg>
+      <span>CLI Terminal [T]</span>
+    </button>
+  </div>
+
+  <div id="terminal-modal" class="terminal-modal hidden">
+    <div class="terminal-top-bar">
+      <div class="terminal-dots">
+        <span class="term-dot red"></span>
+        <span class="term-dot yellow"></span>
+        <span class="term-dot green"></span>
+      </div>
+      <div class="terminal-title">sidharth@backend-telemetry:~</div>
+      <button id="terminal-close-btn" class="terminal-close-btn" title="Close [Esc]">✕</button>
+    </div>
+    <div id="terminal-log-body" class="terminal-body"></div>
+    <div class="terminal-input-row">
+      <span class="terminal-prompt-sym">❯</span>
+      <input type="text" id="terminal-cmd-input" class="terminal-input" placeholder="Type 'help' or 'experience'..." autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+
+  <!-- INTERACTIVE MODAL FOR SWARM DRONES SIMULATION -->
+  <div id="drone-modal" class="modal-backdrop">
+    <div class="modal-window">
+      <button id="close-drone-modal" class="modal-close-icon" title="Close modal">✕</button>
+      <span class="section-tag">Interactive Simulation</span>
+      <h3 style="font-size:1.4rem;font-weight:700;margin-bottom:0.5rem;">Autonomous Swarm Drone Coordination</h3>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.5;">
+        Real-time simulation of decentralized boids-based flight path coordination, peer collision avoidance, and autonomous surveillance perimeter tracking around a roaming moving target.
+      </p>
+
+      <canvas id="drone-swarm-canvas"></canvas>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;color:var(--text-muted);font-family:var(--font-mono);flex-wrap:wrap;gap:0.5rem;">
+        <span>Algorithm: Decentralized Flocking + Target Vector Attraction</span>
+        <span style="color:var(--accent-cyan)">Real-time 60fps Canvas</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/audio.js"></script>
+  <script src="js/fluid-canvas.js"></script>
+  <script src="js/system-simulator.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
