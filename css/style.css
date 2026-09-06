@@ -1143,36 +1143,6 @@ code, pre {
   border-top: 1px solid var(--border-subtle);
 }
 
-/* Callout Box for Cross-Functional Hospital Leadership */
-.leadership-callout {
-  margin-top: 1.5rem;
-  padding: 1.25rem;
-  border-radius: var(--radius-md);
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(56, 189, 248, 0.05));
-  border: 1px solid rgba(99, 102, 241, 0.25);
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-.callout-icon {
-  font-size: 1.4rem;
-  color: var(--accent-indigo);
-  flex-shrink: 0;
-}
-
-.callout-text h4 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-bottom: 0.3rem;
-  color: var(--text-primary);
-}
-
-.callout-text p {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
 
 /* ==========================================================================
    PROJECTS SECTION

@@ -147,7 +147,7 @@ Type '<span style="color:#38bdf8;">help</span>' to list available commands.
 Available commands:
   <span style="color:#38bdf8;">about</span>        - Summary of background & core competencies
   <span style="color:#38bdf8;">skills</span>       - Technical skill breakdown
-  <span style="color:#38bdf8;">experience</span>   - Verteil Tech (SWE) & hospital operations leadership
+  <span style="color:#38bdf8;">experience</span>   - Verteil Technologies (SWE & SWE Intern)
   <span style="color:#38bdf8;">projects</span>     - Swarm Drones, Riyadh Air NDC, Sign Language CV, CKD ML
   <span style="color:#38bdf8;">education</span>    - Amrita School of Engineering & certifications
   <span style="color:#38bdf8;">jfr</span>          - Java Flight Recorder diagnostic snapshot
@@ -162,10 +162,10 @@ Available commands:
   cmdBio() {
     this.print(`
 <span style="color:#38bdf8;font-weight:700;">Sidharth Sreekumar — Software Engineer</span>
-Kerala, India
+Kerala, India | +91 9645332233 | sidharthsmsd@gmail.com
 • Results-driven Software Engineer experienced in building scalable backend microservices, RESTful APIs, and distributed systems using Java, Spring Boot, and AWS.
-• Proven track record in CI/CD automation, performance profiling (JFR), and enterprise airline NDC integrations.
-• Cross-functional leadership in hospital operations optimizing patient workflows.
+• Proven track record in CI/CD automation, performance profiling, and enterprise integrations.
+• Additionally brings cross-functional leadership experience in hospital operations, focusing on patient care quality improvements and workflow optimization.
 `, false);
   }
 
@@ -182,18 +182,19 @@ Kerala, India
 
   cmdExperience() {
     this.print(`
-<span style="color:#38bdf8;font-weight:700;">1. Software Engineer @ Verteil Technologies (Oct 2023 – Present)</span>
-   • Co-code owner for Riyadh Air integration (backend, code reviews, prod maintenance)
-   • Standardized RESTful APIs secured with OAuth 2.0 & JWT for partner airlines
-   • Microservices on AWS (Java 18+, Spring Boot, PostgreSQL, Redis)
-   • Integrated gRPC inter-service communication for low latency
-   • CI/CD with GitHub Actions & ArgoCD, JFR profiling & Grafana/Kibana observability
+<span style="color:#38bdf8;font-weight:700;">1. Software Engineer @ Verteil Technologies Pvt. Ltd (Oct 2023 – Present)</span>
+   • Serve as co-code owner for Riyadh Air integration (backend, code reviews, prod maintenance)
+   • Designed and implemented RESTful APIs secured with OAuth 2.0 & JWT to standardize airline data retrieval
+   • Built scalable microservices on AWS (Java 18+, Spring Boot, PostgreSQL, Redis) with 30% faster scaffolding via GitHub Copilot & Claude Code
+   • Integrated gRPC inter-service communication for low-latency communication
+   • Automated CI/CD pipelines using GitHub Actions & ArgoCD with unit & acceptance testing
+   • Conducted load testing on backend services to validate throughput & latency under peak traffic
+   • Performed JVM performance analysis using Java Flight Recorder (JFR) for memory, GC, and CPU bottlenecks
+   • Improved system observability by building Kibana & Grafana dashboards, reducing MTTR
 
-<span style="color:#38bdf8;font-weight:700;">2. Software Engineering Intern @ Verteil Technologies (Mar 2023 – Jul 2023)</span>
-   • Built airline data processing workflows with Java, Spring Boot, REST APIs
-
-<span style="color:#38bdf8;font-weight:700;">3. Hospital Operations Leadership</span>
-   • Managed patient care quality improvements, cross-functional logistics & workflow optimization.
+<span style="color:#38bdf8;font-weight:700;">2. Software Engineering Intern @ Verteil Technologies Pvt. Ltd (Mar 2023 – Jul 2023)</span>
+   • Built backend services using Java, Spring Boot, and REST APIs for airline data processing workflows
+   • Worked closely with senior engineers in Agile sprints, learning best practices in clean code and debugging
 `, false);
   }
 
