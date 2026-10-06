@@ -881,6 +881,15 @@ code, pre {
   white-space: pre-wrap;
 }
 
+.telemetry-log-output .log-entry {
+  white-space: normal;
+  margin-bottom: 0.2rem;
+}
+
+.telemetry-log-output .log-entry:last-child {
+  margin-bottom: 0;
+}
+
 .log-time { color: var(--text-muted); }
 .log-level-info { color: var(--accent-cyan); font-weight: 600; }
 .log-level-warn { color: var(--accent-amber); font-weight: 600; }

@@ -27,6 +27,10 @@ class SystemSimulator {
   init() {
     this.bindEvents();
     this.startBackgroundMetrics();
+    const output = document.getElementById('telemetry-log');
+    if (output) output.innerHTML = '';
+    this.streamLogsHtml = '';
+    this.appendLog("INITIALIZE", "INFO", "Listening on gRPC channel 0.0.0.0:50051...");
     this.appendLog("SYSTEM INITIALIZED", "INFO", "Riyadh Air NDC Gateway v2.4 online. gRPC channels established.");
   }
 
@@ -162,7 +166,7 @@ class SystemSimulator {
     if (!output) return;
 
     if (tab === 'stream') {
-      output.innerHTML = this.streamLogsHtml || `<span class="log-level-info">[LIVE]</span> Telemetry stream active...\n`;
+      output.innerHTML = this.streamLogsHtml || `<div class="log-entry"><span class="log-level-info">[LIVE]</span> Telemetry stream active...</div>`;
     } else if (tab === 'proto') {
       output.textContent = `syntax = "proto3";
 
@@ -215,7 +219,7 @@ JIT Compiler: C2 Tier-4 active, 100% hot methods compiled
     if (level === 'WARN') levelClass = 'log-level-warn';
     if (level === 'METRIC') levelClass = 'log-level-metric';
 
-    const logEntry = `<div><span class="log-time">[${time}]</span> <span class="${levelClass}">[${prefix}]</span> ${message}</div>`;
+    const logEntry = `<div class="log-entry"><span class="log-time">[${time}]</span> <span class="${levelClass}">[${prefix}]</span> ${message}</div>`;
     
     if (this.activeTab === 'stream') {
       output.innerHTML += logEntry;
