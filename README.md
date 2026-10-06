@@ -57,6 +57,7 @@ This website is engineered from first principles with **zero external runtime de
 ├── server.js                   # Lightweight zero-dependency local static server
 ├── package.json                # Project metadata & npm start script
 ├── README.md                   # Documentation & setup guide
+├── AGENTS.md                   # AI agent instructions, architecture map & standards
 ├── css/
 │   └── style.css               # Fluid typography, glassmorphism, responsive grid & animations
 └── js/

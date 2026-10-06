@@ -1782,6 +1782,9 @@ code, pre {
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
   margin: 1.25rem 0;
+  display: block;
+  cursor: crosshair;
+  touch-action: none;
 }
 
 /* ==========================================================================

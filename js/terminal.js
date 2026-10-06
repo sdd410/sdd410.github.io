@@ -26,6 +26,8 @@ class InteractiveTerminal {
       'contact': () => this.cmdContact(),
       'jfr': () => this.cmdJFR(),
       'theme': (args) => this.cmdTheme(args),
+      'drone': () => this.cmdDrone(),
+      'sim': () => this.cmdDrone(),
       'resume': () => this.cmdResume(),
       'clear': () => this.cmdClear(),
       'exit': () => this.toggle(false)
@@ -166,6 +168,7 @@ Available commands:
   <span style="color:#38bdf8;">projects</span>     - Swarm Drones, Riyadh Air NDC, Sign Language CV, CKD ML
   <span style="color:#38bdf8;">education</span>    - Amrita School of Engineering & certifications
   <span style="color:#38bdf8;">jfr</span>          - Java Flight Recorder diagnostic snapshot
+  <span style="color:#38bdf8;">drone</span>        - Launch autonomous swarm drone simulation
   <span style="color:#38bdf8;">theme &lt;name&gt;</span> - Switch theme: midnight, emerald, amber, light
   <span style="color:#38bdf8;">contact</span>      - Email, phone, GitHub, LinkedIn
   <span style="color:#38bdf8;">resume</span>       - Download PDF resume directly
@@ -269,6 +272,17 @@ JVM Status: Healthy | 0 memory leak warnings.
     link.href = 'Sidharth_Sreekumar_SWE.pdf';
     link.download = 'Sidharth_Sreekumar_SWE.pdf';
     link.click();
+  }
+
+  cmdDrone() {
+    this.print(`Launching Autonomous Swarm Drone Simulation...`, false);
+    const btn = document.getElementById('open-drone-sim-btn');
+    if (btn) {
+      setTimeout(() => {
+        this.toggle(false);
+        btn.click();
+      }, 250);
+    }
   }
 
   cmdClear() {

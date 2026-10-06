@@ -261,79 +261,147 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeDroneBtn = document.getElementById('close-drone-modal');
 
   let droneSimAnimationId = null;
+  let simAbortController = null;
+
+  function closeDroneModal() {
+    if (!droneModal) return;
+    droneModal.classList.remove('open');
+    document.body.style.overflow = '';
+    if (droneSimAnimationId) {
+      cancelAnimationFrame(droneSimAnimationId);
+      droneSimAnimationId = null;
+    }
+    if (simAbortController) {
+      simAbortController.abort();
+      simAbortController = null;
+    }
+  }
+
+  function openDroneModal() {
+    if (!droneModal) return;
+    window.soundEngine && window.soundEngine.playClick();
+    droneModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    initDroneSwarmSimulation();
+  }
 
   if (openDroneBtn && droneModal) {
-    openDroneBtn.addEventListener('click', () => {
-      window.soundEngine && window.soundEngine.playClick();
-      droneModal.classList.add('open');
-      initDroneSwarmSimulation();
-    });
+    openDroneBtn.addEventListener('click', openDroneModal);
   }
 
   if (closeDroneBtn && droneModal) {
-    closeDroneBtn.addEventListener('click', () => {
-      droneModal.classList.remove('open');
-      if (droneSimAnimationId) cancelAnimationFrame(droneSimAnimationId);
-    });
+    closeDroneBtn.addEventListener('click', closeDroneModal);
   }
 
   if (droneModal) {
     droneModal.addEventListener('click', (e) => {
       if (e.target === droneModal) {
-        droneModal.classList.remove('open');
-        if (droneSimAnimationId) cancelAnimationFrame(droneSimAnimationId);
+        closeDroneModal();
       }
     });
   }
 
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && droneModal && droneModal.classList.contains('open')) {
+      closeDroneModal();
+    }
+  });
+
   function initDroneSwarmSimulation() {
     const canvas = document.getElementById('drone-swarm-canvas');
     if (!canvas) return;
+
+    if (droneSimAnimationId) {
+      cancelAnimationFrame(droneSimAnimationId);
+      droneSimAnimationId = null;
+    }
+    if (simAbortController) {
+      simAbortController.abort();
+    }
+    simAbortController = new AbortController();
+    const { signal } = simAbortController;
+
     const ctx = canvas.getContext('2d');
     const dpr = window.devicePixelRatio || 1;
-    const w = rect.width;
-    const h = rect.height || 240;
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
+
+    // Correctly obtain element bounds, supporting clientWidth and getBoundingClientRect
+    const rect = canvas.getBoundingClientRect();
+    let w = canvas.clientWidth || rect.width || 600;
+    let h = canvas.clientHeight || rect.height || 280;
+
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(dpr, dpr);
 
     const numDrones = w < 480 ? 16 : 24;
     const drones = [];
-    let target = { x: w * 0.5, y: h * 0.5, vx: 1.2, vy: 0.8 };
+    let target = { x: w * 0.5, y: h * 0.5, vx: 1.1, vy: 0.8 };
+    let isDragging = false;
 
     const setTargetFromPos = (clientX, clientY) => {
       const cr = canvas.getBoundingClientRect();
-      target.x = Math.max(20, Math.min(w - 20, clientX - cr.left));
-      target.y = Math.max(20, Math.min(h - 20, clientY - cr.top));
+      const scaleX = cr.width > 0 ? (w / cr.width) : 1;
+      const scaleY = cr.height > 0 ? (h / cr.height) : 1;
+      target.x = Math.max(25, Math.min(w - 25, (clientX - cr.left) * scaleX));
+      target.y = Math.max(25, Math.min(h - 25, (clientY - cr.top) * scaleY));
     };
+
+    // User interaction: mouse drag & touch tracking
+    canvas.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      setTargetFromPos(e.clientX, e.clientY);
+    }, { signal });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        setTargetFromPos(e.clientX, e.clientY);
+      }
+    }, { signal });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    }, { signal });
 
     canvas.addEventListener('touchstart', (e) => {
       if (e.touches.length > 0) {
+        isDragging = true;
         setTargetFromPos(e.touches[0].clientX, e.touches[0].clientY);
       }
-    }, { passive: true });
+    }, { signal, passive: true });
 
     canvas.addEventListener('touchmove', (e) => {
       if (e.touches.length > 0) {
         e.preventDefault();
         setTargetFromPos(e.touches[0].clientX, e.touches[0].clientY);
       }
-    }, { passive: false });
+    }, { signal, passive: false });
 
-    canvas.addEventListener('mousedown', (e) => {
-      setTargetFromPos(e.clientX, e.clientY);
-    });
+    window.addEventListener('touchend', () => {
+      isDragging = false;
+    }, { signal });
 
-    canvas.addEventListener('mousemove', (e) => {
-      if (e.buttons > 0) {
-        setTargetFromPos(e.clientX, e.clientY);
+    // Dynamic resize handler
+    window.addEventListener('resize', () => {
+      const newRect = canvas.getBoundingClientRect();
+      const newW = canvas.clientWidth || newRect.width || 600;
+      const newH = canvas.clientHeight || newRect.height || 280;
+      if (newW !== w || newH !== h) {
+        w = newW;
+        h = newH;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+        target.x = Math.max(25, Math.min(w - 25, target.x));
+        target.y = Math.max(25, Math.min(h - 25, target.y));
       }
-    });
+    }, { signal });
 
     for (let i = 0; i < numDrones; i++) {
       drones.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
+        x: Math.random() * (w - 60) + 30,
+        y: Math.random() * (h - 60) + 30,
         vx: (Math.random() - 0.5) * 2,
         vy: (Math.random() - 0.5) * 2,
         id: `UAV-${101 + i}`,
@@ -341,37 +409,68 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    let pulseTime = 0;
+
     function simLoop() {
+      pulseTime += 0.05;
+
+      // Dark tactical canvas background
       ctx.fillStyle = '#060a14';
       ctx.fillRect(0, 0, w, h);
 
-      // Move target
-      target.x += target.vx;
-      target.y += target.vy;
-      if (target.x < 30 || target.x > w - 30) target.vx *= -1;
-      if (target.y < 30 || target.y > h - 30) target.vy *= -1;
-
-      // Draw target point
+      // Subtle radar grid
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.04)';
+      ctx.lineWidth = 1;
+      const gridSize = 40;
       ctx.beginPath();
-      ctx.arc(target.x, target.y, 6, 0, Math.PI * 2);
+      for (let x = gridSize; x < w; x += gridSize) {
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+      }
+      for (let y = gridSize; y < h; y += gridSize) {
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+      }
+      ctx.stroke();
+
+      // Autonomous target patrol motion when user is not manually dragging
+      if (!isDragging) {
+        target.x += target.vx;
+        target.y += target.vy;
+        if (target.x < 30 || target.x > w - 30) target.vx *= -1;
+        if (target.y < 30 || target.y > h - 30) target.vy *= -1;
+      }
+
+      // Draw target indicator with pulsing surveillance ring
+      const pulseRadius = 14 + Math.sin(pulseTime * 2) * 4;
+      ctx.beginPath();
+      ctx.arc(target.x, target.y, 5, 0, Math.PI * 2);
       ctx.fillStyle = '#f43f5e';
       ctx.fill();
+
       ctx.beginPath();
-      ctx.arc(target.x, target.y, 16, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(244, 63, 94, 0.4)';
+      ctx.arc(target.x, target.y, pulseRadius, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(244, 63, 94, 0.45)';
+      ctx.lineWidth = 1.5;
       ctx.stroke();
+
+      // Target text badge
+      ctx.font = '10px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#f43f5e';
+      ctx.fillText('TARGET', target.x + 8, target.y - 8);
 
       // Update and draw drones
       drones.forEach((d, idx) => {
-        // Cohesion & target attraction
+        // Cohesion & target attraction vector
         const dx = target.x - d.x;
         const dy = target.y - d.y;
-        d.vx += dx * 0.001;
-        d.vy += dy * 0.001;
+        d.vx += dx * 0.0012;
+        d.vy += dy * 0.0012;
 
-        // Separation from peers
-        drones.forEach((other, oIdx) => {
+        // Separation from peers (collision avoidance)
+        for (let oIdx = 0; oIdx < drones.length; oIdx++) {
           if (idx !== oIdx) {
+            const other = drones[oIdx];
             const sepX = d.x - other.x;
             const sepY = d.y - other.y;
             const dist = Math.hypot(sepX, sepY);
@@ -380,7 +479,13 @@ document.addEventListener('DOMContentLoaded', () => {
               d.vy += (sepY / dist) * 0.15;
             }
           }
-        });
+        }
+
+        // Boundary damping
+        if (d.x < 25) d.vx += 0.2;
+        if (d.x > w - 25) d.vx -= 0.2;
+        if (d.y < 25) d.vy += 0.2;
+        if (d.y > h - 25) d.vy -= 0.2;
 
         // Speed clamping
         const speed = Math.hypot(d.vx, d.vy);
@@ -392,30 +497,52 @@ document.addEventListener('DOMContentLoaded', () => {
         d.x += d.vx;
         d.y += d.vy;
 
-        // Draw drone mesh line to nearest 2 neighbors
-        drones.forEach((other) => {
+        // Draw drone mesh line to nearest neighbors (avoid duplicate line draws)
+        for (let oIdx = idx + 1; oIdx < drones.length; oIdx++) {
+          const other = drones[oIdx];
           const dist = Math.hypot(d.x - other.x, d.y - other.y);
           if (dist < 65) {
             ctx.beginPath();
             ctx.moveTo(d.x, d.y);
             ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
-            ctx.lineWidth = 0.7;
+            ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - dist / 65) * 0.35})`;
+            ctx.lineWidth = 0.8;
             ctx.stroke();
           }
-        });
+        }
 
-        // Draw Drone Node
+        // Target tracking lock-lines from nearest UAVs
+        const distToTarget = Math.hypot(dx, dy);
+        if (distToTarget < 90) {
+          ctx.beginPath();
+          ctx.moveTo(d.x, d.y);
+          ctx.lineTo(target.x, target.y);
+          ctx.strokeStyle = `rgba(244, 63, 94, ${(1 - distToTarget / 90) * 0.25})`;
+          ctx.lineWidth = 0.6;
+          ctx.setLineDash([3, 3]);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        // Draw Drone Node with glowing core
         ctx.beginPath();
         ctx.arc(d.x, d.y, 3.5, 0, Math.PI * 2);
         ctx.fillStyle = '#00f2fe';
+        ctx.shadowColor = '#00f2fe';
+        ctx.shadowBlur = 6;
         ctx.fill();
+        ctx.shadowBlur = 0;
       });
 
-      // Overlay status
+      // Telemetry Status Header
       ctx.font = '11px "JetBrains Mono", monospace';
       ctx.fillStyle = '#94a3b8';
-      ctx.fillText(`SWARM STATUS: 24 UAVs CO-ORDINATING | LEADER TARGET: (${Math.round(target.x)}, ${Math.round(target.y)})`, 15, 25);
+      ctx.fillText(`SWARM STATUS: ${numDrones} UAVs TRACKING | TARGET: (${Math.round(target.x)}, ${Math.round(target.y)}) | MODE: AUTONOMOUS`, 14, 22);
+
+      // Interactive Hint Footer
+      ctx.font = '10px "JetBrains Mono", monospace';
+      ctx.fillStyle = 'rgba(148, 163, 184, 0.55)';
+      ctx.fillText('• Drag / Click anywhere to relocate target position', 14, h - 12);
 
       droneSimAnimationId = requestAnimationFrame(simLoop);
     }
