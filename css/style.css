@@ -109,6 +109,8 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -117,10 +119,10 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
   position: relative;
   transition: background-color var(--transition-normal), color var(--transition-normal);
-  selection-background-color: var(--accent-blue);
-  selection-color: #ffffff;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
@@ -311,8 +313,34 @@ code, pre {
   transform: translateY(-1px);
 }
 
+.nav-resume-btn {
+  padding: 0.45rem 1rem;
+  font-size: 0.825rem;
+}
+
 .mobile-menu-btn {
   display: none;
+}
+
+.hamburger-icon {
+  display: block;
+}
+
+.hamburger-icon line {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  transform-origin: 12px 12px;
+}
+
+.mobile-menu-btn.open .line-top {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.mobile-menu-btn.open .line-mid {
+  opacity: 0;
+}
+
+.mobile-menu-btn.open .line-bot {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 /* ==========================================================================
@@ -359,11 +387,12 @@ code, pre {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
   margin-bottom: 1.25rem;
+  word-break: break-word;
 }
 
 .gradient-text {
@@ -379,7 +408,9 @@ code, pre {
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  min-height: 2.5rem;
 }
 
 .typing-cursor {
@@ -920,7 +951,7 @@ code, pre {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: 1.5rem;
 }
 
@@ -1149,7 +1180,7 @@ code, pre {
    ========================================================================== */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
   gap: 2rem;
 }
 
@@ -1475,6 +1506,44 @@ code, pre {
   line-height: 1.5;
 }
 
+.terminal-quick-bar {
+  padding: 0.45rem 0.85rem;
+  background: rgba(0, 0, 0, 0.45);
+  border-top: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.terminal-quick-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.terminal-quick-cmds {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: max-content;
+}
+
+.term-quick-btn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-accent);
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.65rem;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.term-quick-btn:hover, .term-quick-btn:active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: var(--accent-cyan);
+  color: #ffffff;
+}
+
 .terminal-input-row {
   display: flex;
   align-items: center;
@@ -1716,84 +1785,83 @@ code, pre {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN
+   MOBILE DRAWER & BACKDROP
    ========================================================================== */
-@media (max-width: 992px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .hero-visual-card {
-    max-width: 540px;
-    margin: 0 auto;
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  .mobile-menu-btn {
-    display: flex;
-  }
-  .hero-stats-row {
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-  .timeline-spine {
-    left: 14px;
-  }
-  .timeline-node-marker {
-    left: 3px;
-  }
-  .timeline-item {
-    padding-left: 45px;
-  }
-  .terminal-modal {
-    right: 1rem;
-    left: 1rem;
-    bottom: 5.5rem;
-    width: auto;
-  }
-  .topology-nodes {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Mobile Drawer */
-.mobile-drawer {
+.mobile-drawer-backdrop {
   position: fixed;
-  top: 5rem;
-  left: 1.5rem;
-  right: 1.5rem;
-  background: var(--bg-card);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border-glow);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  z-index: 99;
-  box-shadow: var(--shadow-lg);
+  inset: 0;
+  background: rgba(4, 7, 15, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 98;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-10px);
+  transition: opacity var(--transition-normal);
+}
+
+.mobile-drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 4.8rem;
+  left: 1rem;
+  right: 1rem;
+  max-height: calc(100vh - 5.8rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--bg-card);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 99;
+  box-shadow: var(--shadow-lg), 0 0 35px var(--glow-cyan);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-12px) scale(0.98);
   transition: all var(--transition-normal);
 }
 
 .mobile-drawer.open {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.drawer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.mobile-drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
 .mobile-nav-link {
   padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
   font-weight: 600;
+  font-size: 0.95rem;
   color: var(--text-primary);
   background: rgba(255, 255, 255, 0.03);
   display: flex;
@@ -1802,8 +1870,679 @@ code, pre {
   transition: all var(--transition-fast);
 }
 
-.mobile-nav-link:hover {
-  background: rgba(56, 189, 248, 0.1);
+.mobile-nav-link:hover, .mobile-nav-link:active {
+  background: rgba(56, 189, 248, 0.12);
   color: var(--accent-cyan);
+  transform: translateX(3px);
+}
+
+.mobile-drawer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.mobile-drawer-resume-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+}
+
+.mobile-drawer-theme-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.drawer-theme-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mobile-drawer-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+}
+
+.drawer-theme-chip {
+  padding: 0.45rem 0.2rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.drawer-theme-chip:hover, .drawer-theme-chip.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/* 1. TABLET LANDSCAPE & MEDIUM SCREENS (<= 992px) */
+@media (max-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .hero-visual-card {
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .simulator-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sim-topology {
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .edu-cert-grid {
+    gap: 1.5rem;
+  }
+}
+
+/* 2. TABLET PORTRAIT & MOBILE (<= 768px) */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section {
+    padding: 4.5rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.85rem, 5.5vw, 2.35rem);
+  }
+
+  .section-desc {
+    font-size: 0.95rem;
+  }
+
+  /* Navigation on mobile */
+  .navbar-wrapper {
+    top: 1rem;
+    padding: 0 1rem;
+  }
+
+  .navbar {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.5rem 0.85rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    min-height: auto;
+    padding: 6.5rem 0 3rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.1rem, 7vw, 3.2rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    min-height: 2.8rem;
+  }
+
+  .hero-bio {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.925rem;
+  }
+
+  .hero-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    padding-top: 1.25rem;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+  }
+
+  /* Live Telemetry Card */
+  .hero-visual-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .telemetry-node {
+    padding: 0.75rem;
+  }
+
+  .quick-connect-chips {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .chip-link {
+    justify-content: center;
+    padding: 0.55rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  /* Interactive Architecture Simulator */
+  .simulator-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .toolbar-controls {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .sim-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.825rem;
+  }
+
+  .sim-topology {
+    padding: 1.25rem 1rem;
+  }
+
+  .topology-nodes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+    margin: 1.25rem 0;
+  }
+
+  .arch-node:last-child {
+    grid-column: span 2;
+  }
+
+  .arch-node {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .arch-node-icon {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0.4rem;
+  }
+
+  .arch-node-title {
+    font-size: 0.8rem;
+  }
+
+  .arch-node-subtitle {
+    font-size: 0.68rem;
+  }
+
+  .sim-metrics-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .sim-cell-val {
+    font-size: 1.05rem;
+  }
+
+  .sim-cell-lbl {
+    font-size: 0.68rem;
+  }
+
+  .sim-telemetry-panel {
+    padding: 1rem;
+  }
+
+  .telemetry-tabs {
+    display: flex;
+    width: 100%;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tab-btn {
+    flex: 1;
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 0.45rem 0.25rem;
+  }
+
+  .telemetry-log-output {
+    height: 220px;
+    font-size: 0.72rem;
+    padding: 0.75rem;
+    word-break: break-word;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Experience Timeline */
+  .timeline-spine {
+    left: 12px;
+  }
+
+  .timeline-node-marker {
+    left: 1px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .timeline-item {
+    padding-left: 36px;
+    margin-bottom: 2.25rem;
+  }
+
+  .experience-card {
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .exp-role {
+    font-size: 1.15rem;
+  }
+
+  .exp-company {
+    font-size: 0.9rem;
+  }
+
+  .exp-badge {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.55rem;
+  }
+
+  .exp-bullet-item {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    padding-left: 1.25rem;
+  }
+
+  .exp-tech-stack {
+    gap: 0.35rem;
+    padding-top: 0.75rem;
+  }
+
+  /* Featured Projects */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+  }
+
+  .project-desc {
+    font-size: 0.875rem;
+  }
+
+  .project-features li {
+    font-size: 0.825rem;
+  }
+
+  .project-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .project-interactive-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.825rem;
+  }
+
+  /* Drone Swarm Modal */
+  .modal-backdrop {
+    padding: 0.75rem;
+  }
+
+  .modal-window {
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius-md);
+    max-height: 85vh;
+  }
+
+  #drone-swarm-canvas {
+    height: 220px;
+    margin: 1rem 0;
+  }
+
+  /* Skills Matrix */
+  .skills-filter-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0.25rem 0.5rem 0.75rem;
+    gap: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    margin-bottom: 1.5rem;
+  }
+
+  .skills-filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    padding: 0.45rem 0.9rem;
+    scroll-snap-align: start;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skill-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .skill-name {
+    font-size: 1.05rem;
+  }
+
+  .skill-desc {
+    font-size: 0.825rem;
+  }
+
+  /* Education & Certs */
+  .edu-cert-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .edu-card, .cert-card {
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .edu-degree {
+    font-size: 1.05rem;
+  }
+
+  .edu-school {
+    font-size: 0.875rem;
+  }
+
+  .cert-item {
+    padding: 0.65rem 0.85rem;
+  }
+
+  .cert-name {
+    font-size: 0.825rem;
+  }
+
+  .cert-issuer {
+    font-size: 0.72rem;
+  }
+
+  /* Contact */
+  .contact-wrapper {
+    padding: 2.25rem 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .contact-headline {
+    font-size: 1.75rem;
+  }
+
+  .contact-subtext {
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .contact-channels {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .contact-channel-card {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.85rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 2.25rem 0;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .footer-meta {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  /* Terminal HUD & Modal on mobile */
+  .hotkey-badge {
+    display: none;
+  }
+
+  .terminal-hud {
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .terminal-launcher-btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .terminal-modal {
+    position: fixed;
+    inset: auto 0.75rem 0.75rem 0.75rem;
+    width: auto;
+    max-width: none;
+    height: 72vh;
+    max-height: 480px;
+    border-radius: var(--radius-lg);
+    transform-origin: bottom center;
+    z-index: 999;
+  }
+
+  .terminal-body {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .terminal-input-row {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .term-quick-btn {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.55rem;
+  }
+
+  /* Toast Notification container */
+  #toast-container {
+    top: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .toast {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.8rem;
+    padding: 0.65rem 1rem;
+  }
+}
+
+/* 3. COMPACT MOBILE SCREENS (<= 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.85rem;
+  }
+
+  .navbar-wrapper {
+    top: 0.6rem;
+    padding: 0 0.6rem;
+  }
+
+  .navbar {
+    padding: 0.4rem 0.65rem;
+    gap: 0.35rem;
+  }
+
+  .nav-brand {
+    font-size: 0.925rem;
+    gap: 0.35rem;
+  }
+
+  .nav-resume-text {
+    display: none;
+  }
+
+  .nav-resume-btn {
+    padding: 0.45rem;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    justify-content: center;
+  }
+
+  .icon-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .mobile-drawer {
+    top: 4.2rem;
+    left: 0.6rem;
+    right: 0.6rem;
+    padding: 1rem;
+  }
+
+  .mobile-drawer-theme-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-section {
+    padding: 5.5rem 0 2.25rem;
+  }
+
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .hero-title {
+    font-size: 2.05rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.98rem;
+    min-height: 3rem;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+  }
+
+  .node-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+
+  .node-metric {
+    font-size: 0.75rem;
+  }
+
+  .cert-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+
+  .contact-channel-card {
+    padding: 0.75rem 0.85rem;
+    font-size: 0.8rem;
+  }
 }
 

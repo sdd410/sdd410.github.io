@@ -2,7 +2,7 @@
 <html lang="en" data-theme="midnight">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Sidharth Sreekumar | Software Engineer - Backend & Distributed Systems</title>
   
   <!-- SEO & Open Graph Meta -->
@@ -63,30 +63,62 @@
           </svg>
         </button>
 
-        <a href="Sidharth_Sreekumar_SWE.pdf" download="Sidharth_Sreekumar_SWE.pdf" class="btn btn-primary" style="padding: 0.45rem 1rem; font-size: 0.825rem;" title="Download Official Resume PDF">
+        <a href="Sidharth_Sreekumar_SWE.pdf" download="Sidharth_Sreekumar_SWE.pdf" class="btn btn-primary nav-resume-btn" title="Download Official Resume PDF">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
             <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
-          <span>Resume PDF</span>
+          <span class="nav-resume-text">Resume PDF</span>
         </a>
         <button id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-label="Toggle Navigation Menu">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+          <svg class="hamburger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line class="line-top" x1="3" y1="6" x2="21" y2="6"/>
+            <line class="line-mid" x1="3" y1="12" x2="21" y2="12"/>
+            <line class="line-bot" x1="3" y1="18" x2="21" y2="18"/>
           </svg>
         </button>
       </div>
     </nav>
 
+    <!-- Mobile Drawer Backdrop Overlay -->
+    <div id="mobile-drawer-backdrop" class="mobile-drawer-backdrop"></div>
+
     <!-- Mobile Drawer Navigation -->
     <div id="mobile-drawer" class="mobile-drawer">
-      <a href="#hero" class="mobile-nav-link">Home <span>→</span></a>
-      <a href="#architecture" class="mobile-nav-link">Architecture Simulator <span>→</span></a>
-      <a href="#experience" class="mobile-nav-link">Experience <span>→</span></a>
-      <a href="#projects" class="mobile-nav-link">Projects <span>→</span></a>
-      <a href="#skills" class="mobile-nav-link">Skills <span>→</span></a>
-      <a href="#education" class="mobile-nav-link">Education <span>→</span></a>
-      <a href="#contact" class="mobile-nav-link">Contact <span>→</span></a>
+      <div class="mobile-drawer-header">
+        <div class="drawer-brand">
+          <span class="brand-dot"></span>
+          <span>sidharth<span style="color:var(--accent-cyan)">.dev</span></span>
+        </div>
+        <button id="mobile-drawer-close" class="icon-btn" aria-label="Close navigation menu">✕</button>
+      </div>
+      <div class="mobile-drawer-links">
+        <a href="#hero" class="mobile-nav-link">Home <span>→</span></a>
+        <a href="#architecture" class="mobile-nav-link">Architecture Simulator <span>→</span></a>
+        <a href="#experience" class="mobile-nav-link">Experience <span>→</span></a>
+        <a href="#projects" class="mobile-nav-link">Projects <span>→</span></a>
+        <a href="#skills" class="mobile-nav-link">Skills <span>→</span></a>
+        <a href="#education" class="mobile-nav-link">Education <span>→</span></a>
+        <a href="#contact" class="mobile-nav-link">Contact <span>→</span></a>
+      </div>
+      <div class="mobile-drawer-actions">
+        <a href="Sidharth_Sreekumar_SWE.pdf" download="Sidharth_Sreekumar_SWE.pdf" class="btn btn-primary mobile-drawer-resume-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span>Download Resume PDF</span>
+        </a>
+        <div class="mobile-drawer-theme-section">
+          <span class="drawer-theme-label">Theme Palette</span>
+          <div class="mobile-drawer-theme-grid">
+            <button class="drawer-theme-chip" data-theme-choice="midnight">Midnight</button>
+            <button class="drawer-theme-chip" data-theme-choice="emerald">Emerald</button>
+            <button class="drawer-theme-chip" data-theme-choice="amber">Amber</button>
+            <button class="drawer-theme-chip" data-theme-choice="light">Light</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -110,7 +142,7 @@
           </div>
 
           <p class="hero-bio">
-            Software Engineer with 2 years of experience developing and maintaining high-performance, <strong>Java-based microservices</strong> in production. Currently design and scale cloud-native infrastructure on <strong>AWS</strong> using <strong>Spring Boot and PostgreSQL</strong>, with hands-on expertise in gRPC/REST communication, OAuth 2.0/JWT security, and JVM performance profiling. Leveraging tools like GitHub Actions, ArgoCD, Grafana, and Kibana, I focus on CI/CD automation, rigorous load testing, and end-to-end system observability.
+            Software Engineer with 3+ years of experience developing and maintaining high-performance, <strong>Java-based microservices</strong> in production. Currently design and scale cloud-native infrastructure on <strong>AWS</strong> using <strong>Spring Boot and PostgreSQL</strong>, with hands-on expertise in gRPC/REST communication, OAuth 2.0/JWT security, and JVM performance profiling. Leveraging tools like GitHub Actions, ArgoCD, Grafana, and Kibana, I focus on CI/CD automation, rigorous load testing, and end-to-end system observability.
           </p>
 
           <div class="hero-actions">
@@ -133,7 +165,7 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
               </svg>
-              <span>Terminal CLI [T]</span>
+              <span>Terminal CLI <span class="hotkey-badge">[T]</span></span>
             </button>
           </div>
 
@@ -987,7 +1019,7 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
       </svg>
-      <span>CLI Terminal [T]</span>
+      <span>CLI Terminal <span class="hotkey-badge">[T]</span></span>
     </button>
   </div>
 
@@ -1002,9 +1034,21 @@
       <button id="terminal-close-btn" class="terminal-close-btn" title="Close [Esc]">✕</button>
     </div>
     <div id="terminal-log-body" class="terminal-body"></div>
+    <div class="terminal-quick-bar">
+      <div class="terminal-quick-cmds">
+        <button type="button" class="term-quick-btn" data-cmd="help">help</button>
+        <button type="button" class="term-quick-btn" data-cmd="about">about</button>
+        <button type="button" class="term-quick-btn" data-cmd="skills">skills</button>
+        <button type="button" class="term-quick-btn" data-cmd="experience">experience</button>
+        <button type="button" class="term-quick-btn" data-cmd="projects">projects</button>
+        <button type="button" class="term-quick-btn" data-cmd="jfr">jfr</button>
+        <button type="button" class="term-quick-btn" data-cmd="resume">resume</button>
+        <button type="button" class="term-quick-btn" data-cmd="clear">clear</button>
+      </div>
+    </div>
     <div class="terminal-input-row">
       <span class="terminal-prompt-sym">❯</span>
-      <input type="text" id="terminal-cmd-input" class="terminal-input" placeholder="Type 'help' or 'experience'..." autocomplete="off" spellcheck="false">
+      <input type="text" id="terminal-cmd-input" class="terminal-input" placeholder="Type or tap command above..." autocomplete="off" spellcheck="false">
     </div>
   </div>
 

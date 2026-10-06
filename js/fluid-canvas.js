@@ -132,6 +132,20 @@ class FluidCanvas {
       }
     }, { passive: true });
 
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 0) {
+        updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+        this.ripples.push({
+          x: e.touches[0].clientX,
+          y: e.touches[0].clientY,
+          radius: 4,
+          maxRadius: 130,
+          alpha: 0.45,
+          growth: 3.5
+        });
+      }
+    }, { passive: true });
+
     window.addEventListener('mouseleave', () => {
       this.pointer.isActive = false;
     });

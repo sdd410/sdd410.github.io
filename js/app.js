@@ -48,18 +48,49 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
   const themes = ['midnight', 'emerald', 'amber', 'light'];
   let currentTheme = localStorage.getItem('sdd_theme') || 'midnight';
-  document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function setTheme(themeName) {
+    currentTheme = themeName;
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('sdd_theme', currentTheme);
+    updateDrawerThemeChips();
+  }
+
+  function updateDrawerThemeChips() {
+    const chips = document.querySelectorAll('.drawer-theme-chip');
+    chips.forEach(chip => {
+      if (chip.dataset.themeChoice === currentTheme) {
+        chip.classList.add('active');
+      } else {
+        chip.classList.remove('active');
+      }
+    });
+  }
+
+  // Initialize theme
+  setTheme(currentTheme);
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
       const nextIdx = (themes.indexOf(currentTheme) + 1) % themes.length;
-      currentTheme = themes[nextIdx];
-      document.documentElement.setAttribute('data-theme', currentTheme);
-      localStorage.setItem('sdd_theme', currentTheme);
+      setTheme(themes[nextIdx]);
       window.soundEngine && window.soundEngine.playClick();
       showToast(`Switched theme to ${currentTheme.toUpperCase()}`);
     });
   }
+
+  // Mobile drawer theme chips
+  const drawerThemeChips = document.querySelectorAll('.drawer-theme-chip');
+  drawerThemeChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const choice = chip.dataset.themeChoice;
+      if (choice && choice !== currentTheme) {
+        setTheme(choice);
+        window.soundEngine && window.soundEngine.playClick();
+        showToast(`Theme changed to ${choice.toUpperCase()}`);
+      }
+    });
+  });
 
   // 2. Sound Toggle
   const soundToggleBtn = document.getElementById('sound-toggle-btn');
@@ -80,20 +111,61 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2b. Mobile Drawer Toggle
+  // 2b. Enhanced Mobile Drawer & Backdrop
   const mobileToggleBtn = document.getElementById('mobile-menu-toggle');
   const mobileDrawer = document.getElementById('mobile-drawer');
+  const mobileDrawerBackdrop = document.getElementById('mobile-drawer-backdrop');
+  const mobileDrawerClose = document.getElementById('mobile-drawer-close');
+
+  const closeMobileDrawer = () => {
+    if (mobileDrawer) mobileDrawer.classList.remove('open');
+    if (mobileDrawerBackdrop) mobileDrawerBackdrop.classList.remove('open');
+    if (mobileToggleBtn) mobileToggleBtn.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  const openMobileDrawer = () => {
+    if (mobileDrawer) mobileDrawer.classList.add('open');
+    if (mobileDrawerBackdrop) mobileDrawerBackdrop.classList.add('open');
+    if (mobileToggleBtn) mobileToggleBtn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
   if (mobileToggleBtn && mobileDrawer) {
     mobileToggleBtn.addEventListener('click', () => {
-      mobileDrawer.classList.toggle('open');
+      const isOpen = mobileDrawer.classList.contains('open');
+      if (isOpen) {
+        closeMobileDrawer();
+      } else {
+        openMobileDrawer();
+      }
       window.soundEngine && window.soundEngine.playClick();
     });
+
+    if (mobileDrawerClose) {
+      mobileDrawerClose.addEventListener('click', () => {
+        closeMobileDrawer();
+        window.soundEngine && window.soundEngine.playClick();
+      });
+    }
+
+    if (mobileDrawerBackdrop) {
+      mobileDrawerBackdrop.addEventListener('click', () => {
+        closeMobileDrawer();
+      });
+    }
 
     const mobileLinks = mobileDrawer.querySelectorAll('.mobile-nav-link');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
-        mobileDrawer.classList.remove('open');
+        closeMobileDrawer();
       });
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
+        closeMobileDrawer();
+      }
     });
   }
 
@@ -218,17 +290,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('drone-swarm-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * (window.devicePixelRatio || 1);
-    canvas.height = 280 * (window.devicePixelRatio || 1);
-    ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
-
+    const dpr = window.devicePixelRatio || 1;
     const w = rect.width;
-    const h = 280;
+    const h = rect.height || 240;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.scale(dpr, dpr);
 
-    const numDrones = 24;
+    const numDrones = w < 480 ? 16 : 24;
     const drones = [];
     let target = { x: w * 0.5, y: h * 0.5, vx: 1.2, vy: 0.8 };
+
+    const setTargetFromPos = (clientX, clientY) => {
+      const cr = canvas.getBoundingClientRect();
+      target.x = Math.max(20, Math.min(w - 20, clientX - cr.left));
+      target.y = Math.max(20, Math.min(h - 20, clientY - cr.top));
+    };
+
+    canvas.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 0) {
+        setTargetFromPos(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    canvas.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        e.preventDefault();
+        setTargetFromPos(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: false });
+
+    canvas.addEventListener('mousedown', (e) => {
+      setTargetFromPos(e.clientX, e.clientY);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (e.buttons > 0) {
+        setTargetFromPos(e.clientX, e.clientY);
+      }
+    });
 
     for (let i = 0; i < numDrones; i++) {
       drones.push({

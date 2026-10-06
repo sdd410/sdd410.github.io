@@ -45,6 +45,21 @@ class InteractiveTerminal {
       this.closeBtn.addEventListener('click', () => this.toggle(false));
     }
 
+    // Quick command buttons (mobile friendly)
+    const quickCmdBtns = this.modal.querySelectorAll('.term-quick-btn');
+    quickCmdBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.soundEngine && window.soundEngine.playTerminalKey();
+        const cmd = btn.dataset.cmd;
+        if (cmd) {
+          this.execute(cmd);
+          this.history.push(cmd);
+          this.historyIndex = this.history.length;
+        }
+      });
+    });
+
     // Keyboard global shortcut: 't' or '`'
     window.addEventListener('keydown', (e) => {
       if ((e.key === 't' || e.key === 'T') && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
@@ -163,7 +178,7 @@ Available commands:
     this.print(`
 <span style="color:#38bdf8;font-weight:700;">Sidharth Sreekumar — Software Engineer</span>
 Kerala, India | +91 9645332233 | sidharthsmsd@gmail.com
-• Software Engineer with 2 years of experience developing and maintaining high-performance, Java-based microservices in production.
+• Software Engineer with 3+ years of experience developing and maintaining high-performance, Java-based microservices in production.
 • Currently design and scale cloud-native infrastructure on AWS using Spring Boot and PostgreSQL, with hands-on expertise in gRPC/REST communication, OAuth 2.0/JWT security, and JVM performance profiling.
 • Leveraging tools like GitHub Actions, ArgoCD, Grafana, and Kibana, focusing on CI/CD automation, rigorous load testing, and end-to-end system observability.
 `, false);
