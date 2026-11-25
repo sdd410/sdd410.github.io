@@ -58,8 +58,11 @@ This website is engineered from first principles with **zero external runtime de
 ├── package.json                # Project metadata & npm start script
 ├── README.md                   # Documentation & setup guide
 ├── AGENTS.md                   # AI agent instructions, architecture map & standards
+├── apps/
+│   └── stick/                  # Stick (App #001): app page + privacy/ (privacy policy for Google Play)
 ├── css/
-│   └── style.css               # Fluid typography, glassmorphism, responsive grid & animations
+│   ├── style.css               # Fluid typography, glassmorphism, responsive grid & animations
+│   └── apps.css                # Styles for the /apps/ pages
 └── js/
     ├── fluid-canvas.js         # Interactive fluid particle physics background
     ├── audio.js                # Synthesized Web Audio API sound designer
