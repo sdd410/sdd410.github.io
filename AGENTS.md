@@ -32,8 +32,12 @@ This repository contains the interactive portfolio and engineering showcase for 
 ├── server.js                  # Zero-dependency local Node.js static HTTP server
 ├── index.html                 # Semantic HTML5 structure, SEO, meta tags, and layouts
 ├── Sidharth_Sreekumar_SWE.pdf # Official SWE resume PDF (linked across UI and CLI)
+├── apps/
+│   └── <app>/index.html       # One page per app (Apps section on the home page links here)
+│       └── privacy/index.html # That app's privacy policy (the URL given to Google Play)
 ├── css/
-│   └── style.css              # Design tokens, themes, fluid typography, glassmorphism, responsive grid
+│   ├── style.css              # Design tokens, themes, fluid typography, glassmorphism, responsive grid, app cards
+│   └── apps.css               # Styles only for /apps/ pages (app page, privacy policy)
 └── js/
     ├── audio.js               # Synthesized Web Audio API sound designer (SoundEngine)
     ├── fluid-canvas.js        # Interactive particle-wave fluid physics background (FluidCanvas)

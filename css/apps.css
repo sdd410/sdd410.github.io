@@ -25,7 +25,7 @@
 }
 
 .app-crumbs a {
-  color: var(--accent-cyan);
+  color: var(--text-accent);
   text-decoration: none;
   font-weight: 600;
 }
@@ -75,7 +75,7 @@
 }
 
 .app-cta strong {
-  color: var(--accent-cyan);
+  color: var(--text-accent);
 }
 
 .app-features {
@@ -116,7 +116,7 @@
 }
 
 .app-footer a {
-  color: var(--accent-cyan);
+  color: var(--text-accent);
   text-decoration: none;
   font-weight: 600;
 }
@@ -156,7 +156,7 @@
 }
 
 .policy a {
-  color: var(--accent-cyan);
+  color: var(--text-accent);
 }
 
 .policy .meta {

@@ -2608,7 +2608,7 @@ code, pre {
 }
 
 .app-links a {
-  color: var(--accent-cyan);
+  color: var(--text-accent);
   text-decoration: none;
 }
 
