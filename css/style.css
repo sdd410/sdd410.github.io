@@ -2623,3 +2623,22 @@ code, pre {
   align-items: center;
   margin-bottom: 1rem;
 }
+
+/* The full navbar (now including "Apps") needs ~1100px; below that, use the
+   drawer menu, as phones already do (iPad landscape is 1024px). */
+@media (max-width: 1100px) {
+  .navbar {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.5rem 0.85rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+}
