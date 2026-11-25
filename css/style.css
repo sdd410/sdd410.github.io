@@ -2558,3 +2558,68 @@ code, pre {
   }
 }
 
+
+/* ==========================================================================
+   App cards (Apps section on the home page and /apps/<app>/ pages)
+   ========================================================================== */
+.app-icon {
+  width: 56px;
+  height: 56px;
+  flex: none;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Each app keeps its own brand colour on its icon (the one exception to
+   theme tokens). Stick: lime on near-black. */
+.app-icon--stick {
+  background: #c6ff3d;
+  color: #0b0b12;
+}
+
+.app-icon--soon {
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  border: 1px dashed var(--border-subtle);
+}
+
+.app-status {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-accent);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 0.2rem 0.65rem;
+}
+
+.app-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-weight: 600;
+}
+
+.app-links a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+}
+
+.app-links a:hover,
+.app-links a:focus-visible {
+  text-decoration: underline;
+}
+
+.app-card-top {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}

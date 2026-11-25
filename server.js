@@ -23,7 +23,23 @@ const server = http.createServer((req, res) => {
     safePath = '/index.html';
   }
 
-  const filePath = path.join(__dirname, safePath);
+  let filePath = path.join(__dirname, safePath);
+
+  // Folders behave like GitHub Pages: /apps/stick/ serves its index.html,
+  // and /apps/stick (no slash) redirects to /apps/stick/.
+  try {
+    if (fs.statSync(filePath).isDirectory()) {
+      if (!urlPath.endsWith('/')) {
+        res.writeHead(301, { Location: urlPath + '/' });
+        res.end();
+        return;
+      }
+      filePath = path.join(filePath, 'index.html');
+    }
+  } catch (_) {
+    // Missing path: readFile below answers 404.
+  }
+
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
