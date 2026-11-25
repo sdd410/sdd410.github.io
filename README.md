@@ -59,7 +59,7 @@ This website is engineered from first principles with **zero external runtime de
 ├── README.md                   # Documentation & setup guide
 ├── AGENTS.md                   # AI agent instructions, architecture map & standards
 ├── apps/
-│   └── stick/                  # Stick (App #001): app page + privacy/ (privacy policy for Google Play)
+│   └── stick/                  # Stick (App #001): app page, privacy/ (privacy policy for Google Play), terms/ (terms of service)
 ├── css/
 │   ├── style.css               # Fluid typography, glassmorphism, responsive grid & animations
 │   └── apps.css                # Styles for the /apps/ pages
